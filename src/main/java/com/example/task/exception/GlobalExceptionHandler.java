@@ -13,9 +13,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse> handleTaskException(TaskException ex) {
         ApiResponse response = ApiResponse.builder()
                 .statusCode(ex.getStatusCode())
-                .message("Error")
+                .message(ex.getMessage())
                 .data(null)
-                .error(ex.getMessage())
+                .errorCode(ex.getErrorCode())
                 .build();
 
         return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getStatusCode()));
@@ -25,9 +25,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse> handleGenericException(Exception ex) {
         ApiResponse response = ApiResponse.builder()
                 .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                .message("Error")
+                .message(ex.getMessage())
                 .data(null)
-                .error(ex.getMessage())
+                .errorCode(HttpStatus.INTERNAL_SERVER_ERROR.toString())
                 .build();
 
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);

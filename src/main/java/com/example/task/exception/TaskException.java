@@ -8,5 +8,6 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class TaskException extends RuntimeException {
     private int statusCode;
+    private String errorCode;
     private String message;
 }

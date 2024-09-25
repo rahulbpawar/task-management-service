@@ -48,7 +48,8 @@ public class TaskServiceImpl implements TaskService {
             }
             return taskRepository.save(task);
         } else {
-            throw new TaskException(400, "Task not found for id: "+taskDto.getId());
+            throw new RuntimeException("Task not found for id: "+taskDto.getId());
+//            throw new TaskException(400, "DATA_NOT_FOUND", "Task not found for id: "+taskDto.getId());
         }
     }
 
@@ -58,7 +59,7 @@ public class TaskServiceImpl implements TaskService {
         if (OptTask.isPresent()) {
             return OptTask.get();
         } else {
-            throw new TaskException(400, "Task not found for id: "+id);
+            throw new TaskException(400, "DATA_NOT_FOUND", "Task not found for id: "+id);
         }
     }
 
